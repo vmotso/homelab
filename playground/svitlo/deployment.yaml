@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svitlo-service
+  namespace: svitlo
+spec:
+  selector:
+    app: svitlo
+  ports:
+  - port: 80
+    targetPort: 5000
+    protocol: TCP
+    name: http
+  type: ClusterIP
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svitlo
+  namespace: svitlo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svitlo
+  template:
+    metadata:
+      labels:
+        app: svitlo
+    spec:
+      containers:
+      - name: svitlo
+        image: vmotso/hello:latest
+        ports:
+        - containerPort: 5000

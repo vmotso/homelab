@@ -1,0 +1,10 @@
+credentials:
+  existingSecret: cloudflared-credentials
+config:
+  tunnel: homelab
+  ingress:
+    - hostname: '*.vmotso.cloud'
+      service: https://ingress-nginx-controller.ingress-nginx
+      originRequest:
+        noTLSVerify: true
+    - service: http_status:404

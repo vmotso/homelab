@@ -1,0 +1,4 @@
+gitops:
+  revision: main
+stacks:
+  - name: apps

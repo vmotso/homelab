@@ -1,0 +1,22 @@
+grafana:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - &host grafana.vmotso.cloud
+    tls:
+      - secretName: grafana-tls
+        hosts:
+          - *host
+  grafana.ini:
+    server:
+      root_url: https://grafana.vmotso.cloud
+
+prometheus:
+  prometheusSpec:
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false

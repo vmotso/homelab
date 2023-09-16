@@ -1,0 +1,5 @@
+- name: Deploy k3s cluster
+  hosts: metal
+  roles:
+    - k3s
+    - longhorn-prepare

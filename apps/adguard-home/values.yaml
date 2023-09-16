@@ -1,0 +1,10 @@
+persistence:
+  storageClassName: longhorn
+
+ingress:
+  annotations:
+    external-dns.alpha.kubernetes.io/exclude: "true"
+  host: adguard.vmotso.cloud
+
+nodeSelector:
+  kubernetes.io/hostname: homelab-node0

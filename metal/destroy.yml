@@ -1,0 +1,4 @@
+- name: Destroy k3s cluster
+  hosts: metal
+  roles:
+    - destroy

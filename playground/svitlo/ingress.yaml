@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: svitlo-rules
+  namespace: svitlo
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "homelab-tunnel.vmotso.cloud"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    
+spec:
+  rules:
+  - host: svitlo.vmotso.cloud
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svitlo-service
+            port:
+              name: http
+  ingressClassName: nginx
+  tls:
+    - secretName: svitlo-tls-certificate 
+      hosts:
+        - svitlo.vmotso.cloud

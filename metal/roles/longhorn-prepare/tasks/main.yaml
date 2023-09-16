@@ -1,0 +1,30 @@
+---
+- name: Ensure apt package index is up to date
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - jq
+      - coreutils
+    state: present
+
+- name: Check if kubectl is installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/kubectl
+  register: kubectl_installed
+
+- name: Install kubectl
+  block:
+    - name: Download kubectl binary
+      ansible.builtin.get_url:
+        url: https://storage.googleapis.com/kubernetes-release/release/v1.22.0/bin/linux/amd64/kubectl
+        dest: /usr/local/bin/kubectl
+        mode: "0755"
+
+    - name: Ensure kubectl is executable
+      ansible.builtin.file:
+        path: /usr/local/bin/kubectl
+        mode: "0755"
+  when: not kubectl_installed.stat.exists

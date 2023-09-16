@@ -1,0 +1,8 @@
+click
+ansible
+kubernetes
+netaddr
+jinja2
+ipdb
+black
+isort

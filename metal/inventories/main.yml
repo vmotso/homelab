@@ -1,0 +1,9 @@
+metal:
+  children:
+    masters:
+      hosts:
+        metal0: { ansible_host: 192.168.42.200 }
+    workers:
+      hosts:
+        metal1: { ansible_host: 192.168.42.201 }
+        metal2: { ansible_host: 192.168.42.202 }

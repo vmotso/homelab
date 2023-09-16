@@ -1,0 +1,6 @@
+dependencies:
+- name: adguard-home
+  repository: https://vmotso.github.io/helm-charts
+  version: 1.9.0
+digest: sha256:72de0574459805b2020a9025eb9ae78a8342bf553ff6f7e1e0052e00ada90bbf
+generated: "2023-07-23T16:58:11.740433+03:00"
